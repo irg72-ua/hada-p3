@@ -6,10 +6,31 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <style>
+        .small_text{
+            background-color: #ffffff;
+            text-align: left;
+            padding: 25px;
+            font-size: 15px;
+        }
+        .h1_text{
+            background-color: #0094ff;
+            text-align: center;
+            padding: 25px;
+            font-size: 35px;
+            font-weight: bold;
+        }
+    </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <p class="small_text">
+        Izan Ruzafa Guijarro 48798645M + Santiago Redondo de la Rica 48712164G
+    </p>
+    <h1 class="h1_text">
+        HADA P3 - CURSO 2024/25
+    </h1>
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
