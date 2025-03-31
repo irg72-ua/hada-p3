@@ -13,7 +13,7 @@ using System.Linq.Expressions;
 
 namespace library
 {
-    class CADProduct
+    public class CADProduct
     {
         private string constring;
         public CADProduct()
