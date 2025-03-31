@@ -6,14 +6,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using library;
 
 namespace proWeb
 {
     public partial class Default : System.Web.UI.Page
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["Miconexion"].ConnectionString;
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        string constring = ConfigurationManager.ConnectionStrings["Miconexion"].ConnectionString;
+        protected void Page_Load(object sender, EventArgs e) { 
 
         }
         protected void btnCreate_Click(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace proWeb
                     throw new Exception("Creation date must be in format dd/mm/yyyy hh:mm:ss");
 
                 // Comprobar si ya existe el producto
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(constring))
                 {
                     conn.Open();
 
@@ -77,6 +77,11 @@ namespace proWeb
                 lblMessage.Text = $"Error: {ex.Message}";
                 Console.WriteLine("Product operation has failed. Error: {0}", ex.Message);
             }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

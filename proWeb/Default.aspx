@@ -10,7 +10,7 @@
             margin: 20px auto;
             display: flex;
             flex-direction: column;
-            gap: 15px; /* Más espacio entre elementos */
+            gap: 15px;
         }
 
         label {
@@ -75,14 +75,15 @@
 
         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
 
-        <div class="button-container">
-            <asp:Button ID="btnCreate" runat="server" Text="Create" CssClass="btn" />
-            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn" />
-            <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn" />
-            <asp:Button ID="btnRead" runat="server" Text="Read" CssClass="btn" />
-            <asp:Button ID="btnReadFirst" runat="server" Text="Read First" CssClass="btn" />
-            <asp:Button ID="btnReadPrev" runat="server" Text="Read Prev" CssClass="btn" />
-            <asp:Button ID="btnReadNext" runat="server" Text="Read Next" CssClass="btn" />
-        </div>
+    <div class="button-container">
+        <asp:Button ID="btnCreate" runat="server" Text="Create" CssClass="btn" OnClick="btnCreate_Click" />
+        <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn" OnClick="btnUpdate_Click" />
+        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn" OnClick="btnDelete_Click" />
+        <asp:Button ID="btnRead" runat="server" Text="Read" CssClass="btn" OnClick="btnRead_Click" />
+        <asp:Button ID="btnReadFirst" runat="server" Text="Read First" CssClass="btn" OnClick="btnReadFirst_Click" />
+        <asp:Button ID="btnReadPrev" runat="server" Text="Read Prev" CssClass="btn" OnClick="btnReadPrev_Click" />
+        <asp:Button ID="btnReadNext" runat="server" Text="Read Next" CssClass="btn" OnClick="btnReadNext_Click" />
+    </div>
+
     </div>
 </asp:Content>
