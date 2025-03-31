@@ -73,6 +73,8 @@
         <label for="txtCreationDate">Creation Date:</label>
         <asp:TextBox ID="txtCreationDate" runat="server" CssClass="input-box"></asp:TextBox>
 
+        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+
         <div class="button-container">
             <asp:Button ID="btnCreate" runat="server" Text="Create" CssClass="btn" />
             <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn" />
