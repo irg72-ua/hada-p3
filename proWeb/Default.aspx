@@ -76,13 +76,15 @@
         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
 
         <div class="button-container">
-            <asp:Button ID="btnCreate" runat="server" Text="Create" CssClass="btn" />
-            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn" />
+            <asp:Button ID="btnCreate" runat="server" Text="Create" CssClass="btn" OnClick ="btnCreate_Click"/>
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn" OnClick ="btnUpdate_Click"/>
             <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn" />
             <asp:Button ID="btnRead" runat="server" Text="Read" CssClass="btn" />
             <asp:Button ID="btnReadFirst" runat="server" Text="Read First" CssClass="btn" />
             <asp:Button ID="btnReadPrev" runat="server" Text="Read Prev" CssClass="btn" />
             <asp:Button ID="btnReadNext" runat="server" Text="Read Next" CssClass="btn" />
         </div>
+        <asp:Label ID="EtiquetaExito" runat="server" Text="Product operation has been sucess!" style="color:forestgreen; font:italic" Visible="false"></asp:Label>
+        <asp:Label ID="EtiquetaFallo" runat="server" Text="Product operation has failed." style="color:red; font:italic" Visible="false"></asp:Label>
     </div>
 </asp:Content>
