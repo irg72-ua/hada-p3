@@ -32,6 +32,17 @@ namespace proWeb
 
             }
         }
+
+        private void LimpiarCampos()
+        {
+            txtCode.Text = "";
+            txtName.Text = "";
+            txtAmount.Text = "";
+            txtPrice.Text = "";
+            txtCreationDate.Text = "";
+            ddlCategory.SelectedIndex = 0;
+        }
+
         private bool CheckCreateUpdate(ref int amount, ref float price, ref int valuecat, ref DateTime Correctformat)
         {
             string formatofecha = "dd/MM/yyyy HH:mm:ss";
@@ -115,6 +126,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    LimpiarCampos();
                 }
             }
 
@@ -138,6 +150,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    LimpiarCampos();
                 }
 
             }
@@ -161,6 +174,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    LimpiarCampos();
                 }
             }
         }
@@ -183,6 +197,7 @@ namespace proWeb
             else
             {
                 EtiquetaFallo.Visible = true;
+                LimpiarCampos();
             }
 
         }
@@ -210,6 +225,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    LimpiarCampos();
                 }
             }
         }
@@ -237,6 +253,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    LimpiarCampos();
                 }
             }
 
@@ -265,6 +282,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    LimpiarCampos();
                 }
             }
 

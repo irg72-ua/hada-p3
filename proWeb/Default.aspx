@@ -43,12 +43,58 @@
             transition: 0.3s;
         }
 
-        .btn:hover {
-            background-color: #007acc;
+        /* Botones específicos */
+        .btn-create {
+            background-color: #28a745;
+        }
+
+        .btn-create:hover {
+            background-color: #218838;
+        }
+
+        .btn-update {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .btn-update:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+
+        .mensaje-exito, .mensaje-error {
+            display: block;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .mensaje-exito {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .mensaje-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
     </style>
 
-    <h2 class="title">Products Management</h2>
+    <h2 class="title" style="text-align:center; font-size: 24px; margin: 30px 0;">Products Management</h2>
+
+    <asp:Label ID="EtiquetaExito" runat="server" CssClass="mensaje-exito" Visible="false" Text="Operación realizada con éxito." />
+    <asp:Label ID="EtiquetaFallo" runat="server" CssClass="mensaje-error" Visible="false" Text="Ha ocurrido un error. Inténtalo de nuevo." />
 
     <div class="form-container">
         <label for="txtCode">Code:</label>
@@ -75,16 +121,19 @@
 
         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
 
-    <div class="button-container">
-        <asp:Button ID="btnCreate" runat="server" Text="Create" CssClass="btn" OnClick="btnCreate_Click" />
-        <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn" OnClick="btnUpdate_Click" />
-        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn" OnClick="btnDelete_Click" />
-        <asp:Button ID="btnRead" runat="server" Text="Read" CssClass="btn" OnClick="btnRead_Click" />
-        <asp:Button ID="btnReadFirst" runat="server" Text="Read First" CssClass="btn" OnClick="btnReadFirst_Click" />
-        <asp:Button ID="btnReadPrev" runat="server" Text="Read Prev" CssClass="btn" OnClick="btnReadPrev_Click" />
-        <asp:Button ID="btnReadNext" runat="server" Text="Read Next" CssClass="btn" OnClick="btnReadNext_Click" />
+        <div class="button-container">
+            <asp:Button ID="btnCreate" runat="server" Text="Create" CssClass="btn btn-create" OnClick="btnCreate_Click" />
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-update" OnClick="btnUpdate_Click" />
+            <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-delete" OnClick="btnDelete_Click" />
+        </div>
+
+        <div class="button-container read-buttons">
+            <asp:Button ID="btnRead" runat="server" Text="Read" CssClass="btn" OnClick="btnRead_Click" />
+            <asp:Button ID="btnReadFirst" runat="server" Text="Read First" CssClass="btn" OnClick="btnReadFirst_Click" />
+            <asp:Button ID="btnReadPrev" runat="server" Text="Read Prev" CssClass="btn" OnClick="btnReadPrev_Click" />
+            <asp:Button ID="btnReadNext" runat="server" Text="Read Next" CssClass="btn" OnClick="btnReadNext_Click" />
+        </div>
+
     </div>
-        <asp:Label ID="EtiquetaExito" runat="server" Text="Product operation has been sucess!" style="color:forestgreen; font:italic" Visible="false"></asp:Label>
-        <asp:Label ID="EtiquetaFallo" runat="server" Text="Product operation has failed." style="color:red; font:italic" Visible="false"></asp:Label>
-    </div>
+
 </asp:Content>
