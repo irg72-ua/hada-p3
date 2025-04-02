@@ -84,6 +84,7 @@
         <asp:Button ID="btnReadPrev" runat="server" Text="Read Prev" CssClass="btn" OnClick="btnReadPrev_Click" />
         <asp:Button ID="btnReadNext" runat="server" Text="Read Next" CssClass="btn" OnClick="btnReadNext_Click" />
     </div>
-
+        <asp:Label ID="EtiquetaExito" runat="server" Text="Product operation has been sucess!" style="color:forestgreen; font:italic" Visible="false"></asp:Label>
+        <asp:Label ID="EtiquetaFallo" runat="server" Text="Product operation has failed." style="color:red; font:italic" Visible="false"></asp:Label>
     </div>
 </asp:Content>

@@ -27,7 +27,7 @@ namespace library
                 using (SqlConnection con = new SqlConnection(constring))
                 {
                     con.Open();
-                    string sql = "INSERT INTO Product (code, name, amount, price, category, creationDate) VALUES (@code, @name, @amount, @price, @category, @creationDate)";
+                    string sql = "INSERT INTO Products (code, name, amount, price, category, creationDate) VALUES (@code, @name, @amount, @price, @category, @creationDate)";
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
                         cmd.Parameters.AddWithValue("@code", en.Code);
@@ -54,16 +54,17 @@ namespace library
                 using (SqlConnection con = new SqlConnection(constring))
                 {
                     con.Open();
-                    String sql = "UPDATE Product SET name = @name, amount = @amount, price = @price, category = @category, creationDate = @creationDate WHERE code = @code";
+                    String sql = "UPDATE Products SET name = @name, amount = @amount, price = @price, category = @category, creationDate = @creationDate WHERE code = @code";
 
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
-
+                        cmd.Parameters.AddWithValue("@code", en.Code);
                         cmd.Parameters.AddWithValue("@name", en.Name);
                         cmd.Parameters.AddWithValue("@amount", en.Amount);
                         cmd.Parameters.AddWithValue("@price", en.Price);
                         cmd.Parameters.AddWithValue("@category", en.Category);
                         cmd.Parameters.AddWithValue("@creationDate", en.CreationDate);
+                        cmd.ExecuteNonQuery();
                         return true;
                     }
                 }
@@ -81,12 +82,12 @@ namespace library
                 using (SqlConnection con = new SqlConnection(constring))
                 {
                     con.Open();
-                    String sql = "DELETE FROM Product WHERE code = @code";
+                    String sql = "DELETE FROM Products WHERE code = @code";
 
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
                         cmd.Parameters.AddWithValue("@code", en.Code);
-
+                        cmd.ExecuteNonQuery();
                         return true;
                     }
                 }
@@ -104,7 +105,7 @@ namespace library
                 using (SqlConnection con = new SqlConnection(constring))
                 {
                     con.Open();
-                    string sql = "SELECT * FROM Product WHERE code = @code";
+                    string sql = "SELECT * FROM Products WHERE code = @code";
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
                         cmd.Parameters.AddWithValue("@code", en.Code);
@@ -115,7 +116,7 @@ namespace library
                                 en.Name = dr["name"].ToString();
                                 en.Amount = Convert.ToInt32(dr["amount"]);
                                 en.Price = Convert.ToSingle(dr["price"]);
-                                en.Category = Convert.ToChar(dr["category"]);
+                                en.Category = Convert.ToInt32(dr["category"]);
                                 en.CreationDate = Convert.ToDateTime(dr["creationDate"]);
                                 return true;
                             }
@@ -140,7 +141,7 @@ namespace library
                 using (SqlConnection con = new SqlConnection(constring))
                 {
                     con.Open();
-                    string sql = "SELECT TOP 1 * FROM Product ORDER BY code ASC";
+                    string sql = "SELECT TOP 1 * FROM Products ORDER BY code ASC";
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
                         using (SqlDataReader dr = cmd.ExecuteReader())
@@ -151,7 +152,7 @@ namespace library
                                 en.Name = dr["name"].ToString();
                                 en.Amount = Convert.ToInt32(dr["amount"]);
                                 en.Price = Convert.ToSingle(dr["price"]);
-                                en.Category = Convert.ToChar(dr["category"]);
+                                en.Category = Convert.ToInt32(dr["category"]);
                                 en.CreationDate = Convert.ToDateTime(dr["creationDate"]);
                                 return true;
                             }
@@ -176,7 +177,7 @@ namespace library
             {
                 using (SqlConnection con = new SqlConnection(constring))
                 {
-                    string sql = "SELECT TOP 1 * FROM Product WHERE code > @code ORDER BY code ASC";
+                    string sql = "SELECT TOP 1 * FROM Products WHERE code > @code ORDER BY code ASC";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
@@ -189,7 +190,7 @@ namespace library
                                 en.Name = dr["name"].ToString();
                                 en.Amount = Convert.ToInt32(dr["amount"]);
                                 en.Price = Convert.ToSingle(dr["price"]);
-                                en.Category = Convert.ToChar(dr["category"]);
+                                en.Category = Convert.ToInt32(dr["category"]);
                                 en.CreationDate = Convert.ToDateTime(dr["creationDate"]);
                                 return true;
                             }
@@ -214,7 +215,7 @@ namespace library
             {
                 using (SqlConnection con = new SqlConnection(constring))
                 {
-                    string sql = "SELECT TOP 1 * FROM Product WHERE code < @code ORDER BY code DESC";
+                    string sql = "SELECT TOP 1 * FROM Products WHERE code < @code ORDER BY code DESC";
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
@@ -227,7 +228,7 @@ namespace library
                                 en.Name = dr["name"].ToString();
                                 en.Amount = Convert.ToInt32(dr["amount"]);
                                 en.Price = Convert.ToSingle(dr["price"]);
-                                en.Category = Convert.ToChar(dr["category"]);
+                                en.Category = Convert.ToInt32(dr["category"]);
                                 en.CreationDate = Convert.ToDateTime(dr["creationDate"]);
                                 return true;
                             }

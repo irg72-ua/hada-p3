@@ -30,8 +30,6 @@ namespace proWeb
                 ddlCategory.DataBind();
                 ddlCategory.SelectedIndex = 0;
 
-
-
             }
         }
         private bool CheckCreateUpdate(ref int amount, ref float price, ref int valuecat, ref DateTime Correctformat)
@@ -100,7 +98,7 @@ namespace proWeb
                 return false;
             }
         }
-        protected void btnCreate_click(object sender, EventArgs create)
+        protected void btnCreate_Click(object sender, EventArgs create)
         {
             EtiquetaExito.Visible = false;
             EtiquetaFallo.Visible = false;
@@ -122,7 +120,7 @@ namespace proWeb
 
 
         }
-        protected void btnUpdate_click(object sender, EventArgs update)
+        protected void btnUpdate_Click(object sender, EventArgs update)
         {
             EtiquetaExito.Visible = false;
             EtiquetaFallo.Visible = false;
@@ -145,7 +143,7 @@ namespace proWeb
             }
         }
         //A partir de este método (Delete) solamente comprobaremos el formato del código ya que no necesitamos nada más para borrar/leer de las diferentes formas posibles en una consulta SQL, ponemos el resto de valores a valor mínimo por si el formato es incorrecto
-        protected void btnDelete_click(object sender, EventArgs delete)
+        protected void btnDelete_Click(object sender, EventArgs delete)
         {
             EtiquetaExito.Visible = false;
             EtiquetaFallo.Visible = false;
@@ -167,7 +165,7 @@ namespace proWeb
             }
         }
         //ReadFirst realimente no necesita nada para su consulta SQL por lo que se crea el ENProduct vacío para llamar este método
-        protected void ReadFirst_click(object sender, EventArgs RF)
+        protected void btnReadFirst_Click(object sender, EventArgs RF)
         {
             EtiquetaExito.Visible = false;
             EtiquetaFallo.Visible = false;
@@ -188,7 +186,7 @@ namespace proWeb
             }
 
         }
-        protected void Read_click(object sender, EventArgs RF)
+        protected void btnRead_Click(object sender, EventArgs RF)
         {
             EtiquetaExito.Visible = false;
             EtiquetaFallo.Visible = false;
@@ -215,7 +213,7 @@ namespace proWeb
                 }
             }
         }
-        protected void ReadPrev_click(object sender, EventArgs RP)
+        protected void btnReadPrev_Click(object sender, EventArgs RP)
         {
             EtiquetaExito.Visible = false;
             EtiquetaFallo.Visible = false;
@@ -243,7 +241,7 @@ namespace proWeb
             }
 
         }
-        protected void ReadNext_click(object sender, EventArgs RN)
+        protected void btnReadNext_Click(object sender, EventArgs RN)
         {
             EtiquetaExito.Visible = false;
             EtiquetaFallo.Visible = false;
