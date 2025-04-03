@@ -13,7 +13,7 @@ namespace proWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) //Para que se ejecute la primera vez que inicia la página
+            if (!IsPostBack)
             {
 
                 ENCategory enc = new ENCategory();
@@ -25,7 +25,7 @@ namespace proWeb
                 }
 
                 ddlCategory.DataSource = data;
-                ddlCategory.DataTextField = "Value"; //asignar id de la categoria como key y el nombre de la categoria como value
+                ddlCategory.DataTextField = "Value"; 
                 ddlCategory.DataValueField = "Key";
                 ddlCategory.DataBind();
                 ddlCategory.SelectedIndex = 0;
@@ -86,8 +86,8 @@ namespace proWeb
                 Console.WriteLine("Product operation has failed.Error: {0}", ex.Message);
                 return false;
             }
+        }
 
-        }//Metodo creado para comprobar formato introducido, pasa los parametros por referencia
         private bool CheckCode()
         {
             try
@@ -155,7 +155,6 @@ namespace proWeb
 
             }
         }
-        //A partir de este método (Delete) solamente comprobaremos el formato del código ya que no necesitamos nada más para borrar/leer de las diferentes formas posibles en una consulta SQL, ponemos el resto de valores a valor mínimo por si el formato es incorrecto
         protected void btnDelete_Click(object sender, EventArgs delete)
         {
             EtiquetaExito.Visible = false;
@@ -178,7 +177,7 @@ namespace proWeb
                 }
             }
         }
-        //ReadFirst realimente no necesita nada para su consulta SQL por lo que se crea el ENProduct vacío para llamar este método
+        
         protected void btnReadFirst_Click(object sender, EventArgs RF)
         {
             EtiquetaExito.Visible = false;
@@ -191,7 +190,7 @@ namespace proWeb
                 txtName.Text = producto.Name;
                 txtAmount.Text = producto.Amount.ToString();
                 txtPrice.Text = producto.Price.ToString();
-                ddlCategory.SelectedIndex = producto.Category - 1; // Ya que los IDs de las categorías comienzan desde 1 y el índice del DropDownList comienza en 0, el indice de la DropDrownList siempre será 1 más que el índice de la categoría seleccionada.
+                ddlCategory.SelectedIndex = producto.Category - 1; 
                 txtCreationDate.Text = producto.CreationDate.ToString();
             }
             else
@@ -219,7 +218,7 @@ namespace proWeb
                     txtName.Text = producto.Name;
                     txtAmount.Text = producto.Amount.ToString();
                     txtPrice.Text = producto.Price.ToString();
-                    ddlCategory.SelectedIndex = producto.Category - 1; // Ya que los IDs de las categorías comienzan desde 1 y el índice del DropDownList comienza en 0, el indice de la DropDrownList siempre será 1 más que el índice de la categoría seleccionada.
+                    ddlCategory.SelectedIndex = producto.Category - 1; 
                     txtCreationDate.Text = producto.CreationDate.ToString();
                 }
                 else
@@ -247,7 +246,7 @@ namespace proWeb
                     txtName.Text = producto.Name;
                     txtAmount.Text = producto.Amount.ToString();
                     txtPrice.Text = producto.Price.ToString();
-                    ddlCategory.SelectedIndex = producto.Category - 1; // Ya que los IDs de las categorías comienzan desde 1 y el índice del DropDownList comienza en 0, el indice de la DropDrownList siempre será 1 más que el índice de la categoría seleccionada.
+                    ddlCategory.SelectedIndex = producto.Category - 1; 
                     txtCreationDate.Text = producto.CreationDate.ToString();
                 }
                 else
