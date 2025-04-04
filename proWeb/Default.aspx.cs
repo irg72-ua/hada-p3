@@ -49,41 +49,80 @@ namespace proWeb
 
             try
             {
+                // Amount
                 if (!int.TryParse(txtAmount.Text, out amount))
                 {
-                    throw new Exception();
+                    throw new FormatException("El campo Amount debe ser un número entero.");
                 }
+
+                // Price
                 if (!float.TryParse(txtPrice.Text, out price))
                 {
-                    throw new Exception();
+                    throw new FormatException("El campo Price debe ser un número decimal.");
                 }
                 else
                 {
                     price = (float)Math.Round(price, 2);
                 }
+
+                // Categoría
                 if (!int.TryParse(ddlCategory.SelectedValue, out valuecat))
                 {
-                    throw new Exception();
+                    throw new FormatException("La categoría debe ser un número entero.");
                 }
-                if (!DateTime.TryParseExact(txtCreationDate.Text, formatofecha, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out Correctformat)) //Compara el formato de la fecha con el formato del segundo string y si es igual devuelve true y esa fecha en Correctformat
-                {
-                    throw new ArgumentException();
-                }
-                if ((txtCode.Text.Length > 16 || txtCode.Text.Length < 1) || (txtName.Text.Length > 32) || (amount < 0 || amount > 9999) || (price < 0 || price > 9999.99) || (valuecat > 4 || valuecat < 1))
-                {
-                    EtiquetaFallo.Visible = true;
-                    throw new Exception();
-                }
-                else
-                {
 
-                    return true;
+                // Fecha
+                if (!DateTime.TryParseExact(txtCreationDate.Text, formatofecha,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None, out Correctformat))
+                {
+                    throw new ArgumentException("Error en el formato de la fecha (Debe ser dd/MM/yyyy HH:mm:ss).");
                 }
+
+                // Validaciones de límites
+                if (txtCode.Text.Length < 1 || txtCode.Text.Length > 16)
+                {
+                    throw new FormatException("El código debe tener entre 1 y 16 caracteres.");
+                }
+
+                if (txtName.Text.Length > 32)
+                {
+                    throw new FormatException("El nombre no puede tener más de 32 caracteres.");
+                }
+
+                if (amount < 0 || amount > 9999)
+                {
+                    throw new FormatException("El amount debe estar entre 0 y 9999.");
+                }
+
+                if (price < 0 || price > 9999.99)
+                {
+                    throw new FormatException("El price debe estar entre 0 y 9999.99.");
+                }
+
+                if (valuecat < 1 || valuecat > 4)
+                {
+                    throw new FormatException("Categoría fuera de rango (1 a 4).");
+                }
+
+                return true;
+            }
+            catch (ArgumentException ex)
+            {
+                EtiquetaFallo.Visible = true;
+                EtiquetaFallo.Text = ex.Message;
+                return false;
+            }
+            catch (FormatException ex)
+            {
+                EtiquetaFallo.Visible = true;
+                EtiquetaFallo.Text = ex.Message;
+                return false;
             }
             catch (Exception ex)
             {
                 EtiquetaFallo.Visible = true;
-                Console.WriteLine("Product operation has failed.Error: {0}", ex.Message);
+                EtiquetaFallo.Text = "Operación de producto ha fallado " + ex.Message;
                 return false;
             }
         }
@@ -92,23 +131,27 @@ namespace proWeb
         {
             try
             {
-                if ((txtCode.Text.Length > 16 || txtCode.Text.Length < 1))
+                if (txtCode.Text.Length < 1 || txtCode.Text.Length > 16)
                 {
-                    EtiquetaFallo.Visible = true;
-                    throw new Exception();
+                    throw new ArgumentOutOfRangeException("El código debe tener entre 1 y 16 caracteres.");
                 }
-                else
-                {
-                    return true;
-                }
+
+                return true;
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                EtiquetaFallo.Visible = true;
+                EtiquetaFallo.Text = ex.Message;
+                return false;
             }
             catch (Exception ex)
             {
                 EtiquetaFallo.Visible = true;
-                Console.WriteLine("Product operation has failed.Error: {0}", ex.Message);
+                EtiquetaFallo.Text = "Error inesperado: " + ex.Message;
                 return false;
             }
         }
+
         protected void btnCreate_Click(object sender, EventArgs create)
         {
             EtiquetaExito.Visible = false;
@@ -126,6 +169,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    EtiquetaFallo.Text = "No se ha podido crear el producto, ID repetida";
                     LimpiarCampos();
                 }
             }
@@ -150,6 +194,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    EtiquetaFallo.Text = "No se ha encontrado la ID de este producto";
                     LimpiarCampos();
                 }
 
@@ -173,6 +218,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    EtiquetaFallo.Text = "Error Eliminando Producto";
                     LimpiarCampos();
                 }
             }
@@ -196,6 +242,7 @@ namespace proWeb
             else
             {
                 EtiquetaFallo.Visible = true;
+                EtiquetaFallo.Text = "Error en la búsqueda del primer producto";
                 LimpiarCampos();
             }
 
@@ -224,6 +271,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    EtiquetaFallo.Text = "Error en la búsqueda del producto";
                     LimpiarCampos();
                 }
             }
@@ -252,6 +300,7 @@ namespace proWeb
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    EtiquetaFallo.Text = "Error en la búsqueda del anterior producto";
                     LimpiarCampos();
                 }
             }
@@ -275,12 +324,13 @@ namespace proWeb
                     txtName.Text = producto.Name;
                     txtAmount.Text = producto.Amount.ToString();
                     txtPrice.Text = producto.Price.ToString();
-                    ddlCategory.SelectedIndex = producto.Category - 1; // Ya que los IDs de las categorías comienzan desde 1 y el índice del DropDownList comienza en 0, el indice de la DropDrownList siempre será 1 más que el índice de la categoría seleccionada.
+                    ddlCategory.SelectedIndex = producto.Category - 1;
                     txtCreationDate.Text = producto.CreationDate.ToString();
                 }
                 else
                 {
                     EtiquetaFallo.Visible = true;
+                    EtiquetaFallo.Text = "Error en la búsqueda del siguiente producto";
                     LimpiarCampos();
                 }
             }

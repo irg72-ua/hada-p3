@@ -94,7 +94,7 @@
     <h2 class="title" style="text-align:center; font-size: 24px; margin: 30px 0;">Products Management</h2>
 
     <asp:Label ID="EtiquetaExito" runat="server" CssClass="mensaje-exito" Visible="false" Text="Operación realizada con éxito." />
-    <asp:Label ID="EtiquetaFallo" runat="server" CssClass="mensaje-error" Visible="false" Text="Ha ocurrido un error. Inténtalo de nuevo." />
+    <asp:Label ID="EtiquetaFallo" runat="server" CssClass="mensaje-error" Visible="false" />
 
     <div class="form-container">
         <label for="txtCode">Code:</label>
@@ -108,9 +108,6 @@
 
         <label for="ddlCategory">Category:</label>
         <asp:DropDownList ID="ddlCategory" runat="server" CssClass="dropdown">
-            <asp:ListItem Text="Computing" Value="Computing"></asp:ListItem>
-            <asp:ListItem Text="Electronics" Value="Electronics"></asp:ListItem>
-            <asp:ListItem Text="Clothing" Value="Clothing"></asp:ListItem>
         </asp:DropDownList>
 
         <label for="txtPrice">Price:</label>
